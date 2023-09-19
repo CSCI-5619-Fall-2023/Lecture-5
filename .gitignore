@@ -2,4 +2,5 @@
 .godot/
 
 # Synty assets that must be downloaded separately
-polygon-adventure/
+polygon-adventure/models/*.fbx
+polygon-adventure/textures/*.png

@@ -1,3 +1,89 @@
-[gd_scene format=3 uid="uid://c63wav7a6ycbo"]
+[gd_scene load_steps=16 format=3 uid="uid://c63wav7a6ycbo"]
+
+[ext_resource type="Script" path="res://scripts/initialize-xr.gd" id="1_80gfw"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_in852"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_kd577"]
+[ext_resource type="PackedScene" uid="uid://b0j3jgvrd61r4" path="res://polygon-adventure/models/SM_Env_Hill_03.fbx" id="4_7rmd4"]
+[ext_resource type="PackedScene" uid="uid://b7hra8od8ep7d" path="res://polygon-adventure/models/SM_Env_HillSnow_04.fbx" id="5_xphi0"]
+[ext_resource type="PackedScene" uid="uid://dgv2hc6h31o4r" path="res://polygon-adventure/models/SM_Env_GroundMounds_05.fbx" id="6_3iid4"]
+[ext_resource type="PackedScene" uid="uid://c26e4pbvojrug" path="res://polygon-adventure/models/SM_Env_GroundMounds_06.fbx" id="7_vk5iw"]
+[ext_resource type="PackedScene" uid="uid://cdtrvx6b2tgkq" path="res://polygon-adventure/models/SM_Env_Stream_Straight_01.fbx" id="8_yc2ul"]
+[ext_resource type="PackedScene" uid="uid://b5ru10hnrbnvh" path="res://polygon-adventure/models/SM_Env_Stream_Corner_01.fbx" id="9_hpatt"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j2bqr"]
+sky_horizon_color = Color(0.641348, 0.71252, 0.6875, 1)
+ground_bottom_color = Color(0.329412, 0.345098, 0.231373, 1)
+ground_horizon_color = Color(0.641348, 0.71252, 0.6875, 1)
+
+[sub_resource type="Sky" id="Sky_sb4yr"]
+sky_material = SubResource("ProceduralSkyMaterial_j2bqr")
+
+[sub_resource type="Environment" id="Environment_ea3ih"]
+background_mode = 2
+sky = SubResource("Sky_sb4yr")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_0jm2s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akbll"]
+albedo_color = Color(0.113725, 0.4, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp4hx"]
+albedo_color = Color(0.113725, 0.4, 1, 1)
 
 [node name="Root" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ea3ih")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+mesh = SubResource("SphereMesh_0jm2s")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+script = ExtResource("1_80gfw")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_in852")]
+hand_material_override = SubResource("StandardMaterial3D_akbll")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("3_kd577")]
+hand_material_override = SubResource("StandardMaterial3D_cp4hx")
+
+[node name="Hills" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.4788)
+
+[node name="SM_Env_Hill_03" parent="Hills" instance=ExtResource("4_7rmd4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52519, 0, -7.64309)
+
+[node name="SM_Env_HillSnow_04" parent="Hills" instance=ExtResource("5_xphi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2667, 0, -12.5031)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="SM_Env_GroundMounds_05" parent="Ground" instance=ExtResource("6_3iid4")]
+transform = Transform3D(5, 0, 0, 0, 2, 0, 0, 0, 5, 0, -0.324799, 0)
+
+[node name="SM_Env_GroundMounds_06" parent="Ground" instance=ExtResource("7_vk5iw")]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 20.6072, 0, 6.61283)
+
+[node name="Water" type="Node3D" parent="."]
+
+[node name="SM_Env_Stream_Straight_01" parent="Water" instance=ExtResource("8_yc2ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.2083, 0, -4.89977)
+
+[node name="SM_Env_Stream_Corner_01" parent="Water" instance=ExtResource("9_hpatt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0934, 0, 0)
