@@ -13,7 +13,7 @@ You will also need to download the [Polygon Adventure](https://canvas.umn.edu/fi
 
 ## Notes
 
-After class, I figured out that the material for the imported models are assigned in .import files. I ran a script to apply the texture to every model in the asset pack and then added the .import files to the repository. This means that you don't have to assign the texture manually for each model (yay!) and will be added to the asset pack files posted on Canvas in the future.
+Note: After class, I figured out that the materials for the imported models are assigned in .import files. I ran a script to apply the texture to every model in the asset pack and then added all the .import files to the repository. This means that you don't have to assign the texture manually for each model (yay!). The asset pack files posted on Canvas will be updated in the near future to include the materials.
 
 ## Acknowledgments
 
