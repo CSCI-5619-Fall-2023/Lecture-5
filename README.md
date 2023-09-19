@@ -11,6 +11,10 @@ To follow along with this lecture, you will first need to install:
 
 You will also need to download the [Polygon Adventure](https://canvas.umn.edu/files/37951294/download?download_frd=1) assets from Canvas and extract them in your project folder.
 
+## Notes
+
+After class, I figured out that the material for the imported models are assigned in .import files. I ran a script to apply the texture to every model in the asset pack and then added the .import files to the repository. This means that you don't have to assign the texture manually for each model (yay!) and will be added to the asset pack files posted on Canvas in the future.
+
 ## Acknowledgments
 
 This lecture uses low-poly assets from [Synty Studios](https://www.syntystudios.com/) that are made available for free educational use through the [Unity Student Plan](https://unity.com/products/unity-student). These assets must be downloaded separately and are not included in this public repository.
