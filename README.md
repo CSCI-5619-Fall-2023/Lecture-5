@@ -9,7 +9,9 @@ To follow along with this lecture, you will first need to install:
 - [Godot Engine 4.1.1](https://godotengine.org/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-You will also need to download the [Polygon Adventure](https://canvas.umn.edu/files/37951294/download?download_frd=1) assets from Canvas and extract them in your project folder.
+After checking out the code, you will need to:
+1. Download the [Polygon Adventure](https://canvas.umn.edu/files/37951294/download?download_frd=1) assets from Canvas and extract them in your project folder.
+2. If you are prompted to install [FBX2glTF](https://godotengine.org/fbx-import/), this means you need to download the FBX importer. You should place the executable file in the same location as the Godot engine, as shown in the video from class.
 
 ## Notes
 
